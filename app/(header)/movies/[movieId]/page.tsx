@@ -11,6 +11,12 @@ interface Props {
 }
 
 async function fetchMovie(movieId: string, plot: string) {
+  console.log('movieId', movieId)
+  console.log(
+    'plot',
+    plot,
+    `${process.env.NEXT_PUBLIC_URL}/api/movies/${movieId}?plot=${plot}`
+  )
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/movies/${movieId}?plot=${plot}`,
     {
@@ -19,16 +25,18 @@ async function fetchMovie(movieId: string, plot: string) {
     //`https://omdbapi.com?apikey=${process.env.OMDB_API_KEY}&i=${movieId}&plot=${plot}`
   )
   const movie: Movie = await res.json()
+  console.log('movie', movie)
   return movie
 }
 
 export async function generateMetadata({ params, searchParams }: Props) {
   const { movieId } = await params
   const { plot = 'short' }: SP = await searchParams
-  await new Promise(resolve => setTimeout(resolve, 2000))
+  // await new Promise(resolve => setTimeout(resolve, 2000))
   const movie = await fetchMovie(movieId, plot)
 
   return {
+    title: movie.Title,
     openGraph: {
       type: 'website',
       siteName: 'Next.js 영화 검색 연습 프로젝트',
@@ -45,7 +53,7 @@ export default async function MovieDetailsPage({
 }: Props) {
   const { movieId } = await params
   const { plot = 'short' }: SP = await searchParams
-  await new Promise(resolve => setTimeout(resolve, 2000))
+  // await new Promise(resolve => setTimeout(resolve, 2000))
   const movie = await fetchMovie(movieId, plot)
 
   // 에러 발생 예시

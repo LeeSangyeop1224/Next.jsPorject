@@ -1,8 +1,18 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   /* config options here */
+  cacheComponents: true,
   reactCompiler: true,
-};
+  devIndicators: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'm.media-amazon.com'
+      }
+    ]
+  }
+}
 
-export default nextConfig;
+export default nextConfig

@@ -1,4 +1,13 @@
+import type { Metadata } from 'next'
 import './globals.css'
+
+export const metadata: Metadata = {
+  // title: 'Next.js 프로젝트'
+  title: {
+    template: '%s| Next.js 프로젝트',
+    default: 'Next.js 프로젝트'
+  }
+}
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
@@ -6,6 +15,10 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       lang="ko"
       className={`antialiased`}>
       <head>
+        <link
+          rel="icon"
+          href="/favicon.png"
+        />
         <link
           rel="stylesheet"
           as="style"

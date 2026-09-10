@@ -1,7 +1,7 @@
 import SearchMovies from './SearchMovies'
 import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'Next.js 영화 검색 연습 프로젝트',

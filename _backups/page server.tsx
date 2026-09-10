@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Title from './Title'
+import Title from '../app/(header)/movies/[movieId]/Title'
 
 export interface Movie {
   imdbID: string
